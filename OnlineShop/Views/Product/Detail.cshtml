@@ -1,0 +1,151 @@
+﻿@model Model.EF.Product
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layouts.cshtml";
+    var category = (Model.EF.ProductCategory)ViewBag.Category;
+    var relatedProducts = (List<Model.EF.Product>)ViewBag.RelatedProducts;
+}
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="/Assets/client1/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Chi tiết sản phẩm</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/">Home</a>
+                        <span>Chi tiết</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__item">
+                        <img class="product__details__pic__item--large"
+                             src="@Model.Image" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__text">
+                    <h3>@Model.Name</h3>
+                    <h4>@Model.Descriptions</h4>
+                    <div class="product__details__price">@Model.Price.GetValueOrDefault(0).ToString("N0")₫</div>
+
+                    @*<div class="product__details__quantity">
+            <div class="quantity">
+                <div class="pro-qty">
+                    <input style="font-size:20px" type="text" value="1">
+                </div>
+            </div>
+        </div>*@
+                    <ul>
+                        <li>
+                            <input style="font-size:21px" type="text" class="txtQuantity" data-id="@Model.ID" value="1" />
+
+                        </li>
+                        <li>
+                            <a href="/them-gio-hang?productId=@Model.ID&quantity=1" class="primary-btn">Thêm vào giỏ hàng</a>
+
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <b>Share on</b>
+                            <div class="share">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+            <div class="product__details__tab">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                           aria-selected="true">Cấu hình máy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                           aria-selected="false">Thông tin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                           aria-selected="false">Đánh giá</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                        <div class="product__details__tab__desc">
+                            <h6>Cấu hình máy</h6>
+                            @Html.Raw(Model.MetaDescriptions)
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tabs-2" role="tabpanel">
+                        <div class="product__details__tab__desc">
+                            <h6>Thông tin</h6>
+                            @Html.Raw(Model.Detail)
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tabs-3" role="tabpanel">
+                        <div class="product__details__tab__desc">
+                            <h6>Đánh giá</h6>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+    <div class="content_bottom">
+        <div class="heading">
+            <h2>Sản phẩm liên quan</h2>
+        </div>
+        <div class="see">
+            <p><a href="/san-pham">Xem tất cả</a></p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="section group">
+        @foreach (var item in relatedProducts)
+        {
+            var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+
+            <div class="col-lg-3 ">
+
+                <div class="featured__item">
+                    <div class="featured__item__pic set-bg" data-setbg="@item.Image">
+                        @*<a href="@url"><img src="@item.Image" alt="@item.Name" /></a>*@
+                        <ul class="featured__item__pic__hover">
+                            <li><a href="@url"><i class="fa fa-info"></i></a></li>
+                            <li><a href="/them-gio-hang?productId=@item.ID&quantity=1"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="featured__item__text">
+
+                        <h6><a href="@url">@item.Name</a></h6>
+                        <h5>@item.Price.Value</h5>
+                        @*<h5>@(item.Price.HasValue ? item.Price.Value.ToString("No"):"Liên hệ")</h5>*@
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

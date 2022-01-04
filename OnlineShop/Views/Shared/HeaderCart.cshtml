@@ -1,0 +1,15 @@
+﻿@model List<OnlineShop.Models.CartItem>
+
+
+
+@*<div class="col-lg-5 pr-0">
+    <a href="/gio-hang" class="icons">
+        <i class="ti-shopping-cart"><span>@Model.Count</span></i>
+    </a>
+</div>*@
+<div class="header__cart">
+    <ul>
+        <li><a href="/gio-hang"><i class="fa fa-shopping-bag"></i> <span>@Model.Count</span></a></li>
+    </ul>
+    <div class="header__cart__price">Giỏ hàng: <span>@Model.Count</span></div>
+</div>

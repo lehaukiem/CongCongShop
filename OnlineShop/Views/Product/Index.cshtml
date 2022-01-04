@@ -1,0 +1,102 @@
+﻿@model List<Model.ViewModel.ProductViewModel>
+@{
+    Layout = "~/Views/Shared/_Layouts.cshtml";
+}
+
+<section class="breadcrumb-section set-bg" data-setbg="/Assets/client1/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Sản phẩm</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/">Home</a>
+                        <span>Tất cả sản phẩm</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    var link = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                        <div class="featured__item">
+                            <div class="featured__item__pic set-bg" data-setbg="@item.Images">
+                                @*<a href="@link"><img src="@item.Images" alt="@item.Name" /></a>*@
+                                <ul class="featured__item__pic__hover">
+                                    <li><a href="@link"><i class="fa fa-info"></i></a></li>
+                                    <li><a href="/them-gio-hang?productId=@item.ID&quantity=1"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="featured__item__text">
+
+                                <h5><a href="@link">@item.Name</a></h5>
+                                <h5>@item.Price.GetValueOrDefault(0).ToString("N0")đ</h5>
+                                @*<h5>@(item.Price.HasValue ? item.Price.Value.ToString("No"):"Liên hệ")</h5>*@
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+        <div class="product__pagination">
+            @if (ViewBag.TotalPage > 0)
+            {
+                var pageDisplay = (int)ViewBag.MaxPage;
+                int totalPage = (int)ViewBag.TotalPage;
+                int currentPage = ((int)ViewBag.Page);
+
+                // Create numeric links
+                var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
+                var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
+
+                var link = "/san-pham/";
+                <nav>
+                    <ul class="pagination">
+                        @if (currentPage > ViewBag.First)
+                        {
+                            <li><a href="@link?page=@ViewBag.First" title="Trang đầu" class="first"><i class="fa fa-angle-double-left"></i></a></li>
+                            <li>
+                                <a href="@link?page=@ViewBag.Prev" title="Trang trước" class="prev"><i class="fa fa-angle-left"></i></a>
+                            </li>
+
+                        }
+                        @for (int i = startPageIndex; i <= endPageIndex; i++)
+                        {
+                            if (currentPage == i)
+                            {
+
+                                <li> <a href="@link?page=@i" class="active" title="Trang @i">@i</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@link?page=@i" title="Trang @i" class="pos">@i</a></li>
+                            }
+                        }
+                        @if (currentPage < totalPage)
+                        {
+                            <li><a href="@link?page=@ViewBag.Next" class="next" title="Trang sau"><i class="fa fa-angle-right"></i></a></li>
+                            <li> <a href="@link?page=@ViewBag.Last" class="last" title="Trang cuối"><i class="fa fa-angle-double-right"></i></a></li>
+                        }
+
+                    </ul>
+                </nav>
+            }
+            else
+            {
+                <span class="alert alert-success">Hiện tại không có sản phẩm nào bán</span>
+            }
+        </div>
+    </div>
+
+</section>
+
