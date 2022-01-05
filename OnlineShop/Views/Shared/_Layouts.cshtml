@@ -40,7 +40,11 @@
     <!-- main css -->
     <link rel="stylesheet" href="/Assets/Client2/css/style.css" />
     <link rel="stylesheet" href="/Assets/Client2/css/responsive.css" />
-
+    <style>
+        .smited{
+            height:10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -67,40 +71,45 @@
     </header>
     <!--================Header Menu Area =================-->
     <!--================Home Banner Area =================-->
-    <section class="home_banner_area mb-40">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="container">
-                <div class="banner_content row">
-                    <div class="col-lg-4">
-                        @{Html.RenderAction("ProductCategory", "Product");}
-                    </div>
-                    <div class="col-lg-8">
-                        <p class="sub text-uppercase">men Collection</p>
-                        <h3><span>Show</span> Your <br />Personal <span>Style</span></h3>
-                        <h4>Fowl saw dry which a above together place.</h4>
-                        <a class="main_btn mt-40" href="#">View Collection</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!--================End Home Banner Area =================-->
     @RenderSection("slide", required: false)
     <!-- Start feature Area -->
-    <section class="feature-area section_gap_bottom_custom">
+
+    <div class="smited"></div>
+
+
+    <!-- End feature Area -->
+    <section class="featured spad">
         <div class="container">
-            <div class="row">
-
-
-            </div>
+            @RenderBody()
         </div>
     </section>
-    <!-- End feature Area -->
-    @RenderBody()
+    <!-- Featured Section End -->
+    <!-- Banner Begin -->
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="/Assets/Client/Product/banner1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="/Assets/Client/Product/banner.png" alt="">
+                    </div>
+                </div>
+            </div>
 
-    <!--================ start footer Area  =================-->
-    @{ Html.RenderAction("Footer", "Home");}
-    <!--================ End footer Area  =================-->
+        </div>
+
+    </div>
+    <!-- Banner End -->
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        @{ Html.RenderAction("Footer", "Home");}
+    </footer>
+
     <!-- Footer Section End -->
     <!-- Js Plugins -->
     @*<script src="/Assets/client1/js/jquery-3.3.1.min.js"></script>*@

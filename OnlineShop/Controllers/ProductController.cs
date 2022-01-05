@@ -35,6 +35,7 @@ namespace OnlineShop.Controllers
         public PartialViewResult ProductCategory()
         {
             var model = new ProductCategoryDao().ListAll();
+            ViewBag.ProductCategory = model;
             return PartialView(model);
         }
 

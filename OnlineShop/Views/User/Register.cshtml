@@ -11,30 +11,25 @@
     <script src="/Assets/Client/js/controller/userController.js"></script>
     
 }
-
-<!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="/Assets/client1/img/breadcrumb.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>Đăng kí thành viên</h2>
-                    <div class="breadcrumb__option">
-                        <a href="/">Home</a>
-                        <span>Register</span>
-                    </div>
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h2>ĐĂNG KÍ</h2>
+                </div>
+                <div class="page_link">
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- Breadcrumb Section End -->
+
 @using (Html.BeginForm("Register", "User", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @if (ViewBag.Success != null)
@@ -42,63 +37,63 @@
             <div class="alert alert-success">@ViewBag.Success</div>}
         <div class="form-group">
             @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-5">
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.PasswordFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-5">
+                @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-5">
+                @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
             </div>
         </div>
 
-      <div class="form-group">
+      @*<div class="form-group">
                 @Html.LabelFor(model => model.ProvinceID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-5">
                     @Html.DropDownList("ProvinceID", new SelectList(new string[] { }), new { @class="form-control", @id = "ddlProvince" })
                     @Html.ValidationMessageFor(model => model.ProvinceID, "", new { @class = "text-danger" })
                 </div>
@@ -106,29 +101,48 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.DistrictID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-5">
                     @Html.DropDownList("DistrictID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlDistrict" })
                     @Html.ValidationMessageFor(model => model.DistrictID, "", new { @class = "text-danger" })
                 </div>
             </div>
         <div class="form-group">
                 @Html.LabelFor(model => model.PrecinctID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-5">
                     @Html.DropDownList("PrecinctID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlPrecinct" })
                     @Html.ValidationMessageFor(model => model.PrecinctID, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-2 col-md-5">
                 @Html.Captcha(registerCapcha)
                 @Html.TextBox("CaptchaCode")
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Đăng kí" class="btn btn-default" />
+            <div class="col-md-offset-2 col-md-5">
+                <input id="btnRegister" type="submit" value="Đăng kí" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
-
+<style>
+    #btnRegister {
+        width: 50% !important;
+        font-size: 16px !important;
+        background-color: #4dce12 !important;
+        padding: 2px 2px 2px 2px !important;
+        margin: auto !important;
+    }
+    .control-label{
+        height: 13px !important;
+    }
+    input {
+        width: 100%;
+        height: 100% !important;
+        font-size:14px !important;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    }
+</style>
