@@ -10,14 +10,14 @@
         <div class="banner_inner d-flex align-items-center">
             <div class="container">
                 <div class="banner_content row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 category">
                         @{Html.RenderAction("ProductCategory", "Product");}
                     </div>
                     <div class="col-lg-8 backgroundUrl">
-                        <p class="sub text-uppercase">TuroShop</p>
-                        <h3><span>Uy tín</span>  <br />Chất lượng <br /><span>Giá rẻ</span></h3>
-                        <h4>Hãy đến với TuroShop</h4><br />
-                        <a class="main_btn mt-40" href="/san-pham">Mua ngay</a>
+                        <br />
+                        <h3 class="text-primary"><span class="text-white">Uy tín</span>  <br />Chất lượng <br /><span class="text-white">Giá rẻ</span></h3>
+                        <h4 class="text-uppercase text-success">Hãy đến với TuroShop</h4>
+                        <a class="main_btn mt-40" href="/san-pham">Mua ngay</a><br /><br /><br /><br />
                     </div>
                 </div>
             </div>
@@ -25,7 +25,10 @@
     </section>
     <style>
         .backgroundUrl {
-            background: url("../../Assets/Client/Product/banner.png");
+            background: url("../../Assets/Client/Product/banner1.jpg");
+        }
+        .category{
+            padding-left:10px;
         }
     </style>
 
